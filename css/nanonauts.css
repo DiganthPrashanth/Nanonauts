@@ -7,9 +7,14 @@ h4 {
   color: #b9f2ff;
   /* CSS styles */
 }
-p ,li , a , iframe {
+p ,li , iframe {
   font-family: "Roboto", sans-serif;
   font-weight: 100;
+  font-style: italic;
+}
+a {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
   font-style: italic;
 }
 /* Add a black background color to the top navigation */
