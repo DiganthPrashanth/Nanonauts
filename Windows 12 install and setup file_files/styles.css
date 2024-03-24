@@ -1,0 +1,719 @@
+/* Google Fonts - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+  background: #f0faff;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 200px;
+  background: #4a98f7;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav,
+.nav .nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav {
+  justify-content: space-between;
+}
+
+a {
+  color: white;
+  font-size: 17px;
+  padding: 7px 13px;
+  border-radius: 3px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+a.active,
+a:hover {
+  background: #55a5e3;
+  transition: .5s;
+}
+
+.nav .logo {
+  font-size: 22px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.nav .nav-links {
+  column-gap: 20px;
+  list-style: none;
+}
+
+.nav .nav-links a {
+  transition: all 0.2s linear;
+}
+
+.nav.openSearch .nav-links a {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav .search-icon {
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.nav .search-box {
+  position: absolute;
+  right: 250px;
+  height: 45px;
+  max-width: 555px;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s linear;
+}
+
+.nav.openSearch .search-box {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.search-box .search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  left: 15px;
+  color: #4a98f7;
+  transform: translateY(-50%);
+}
+
+.search-box input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  background-color: #fff;
+  padding: 0 15px 0 45px;
+}
+
+.nav .navOpenBtn,
+.nav .navCloseBtn {
+  display: none;
+}
+
+/* responsive */
+@media screen and (max-width: 1160px) {
+  .nav {
+    padding: 15px 100px;
+  }
+
+  .nav .search-box {
+    right: 150px;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .nav {
+    padding: 15px 50px;
+  }
+
+  .nav .search-box {
+    right: 100px;
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .nav .navOpenBtn,
+  .nav .navCloseBtn {
+    display: block;
+  }
+
+  .nav {
+    padding: 15px 20px;
+  }
+
+  .nav .nav-links {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    max-width: 280px;
+    width: 100%;
+    padding-top: 100px;
+    row-gap: 30px;
+    flex-direction: column;
+    background-color: #11101d;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    z-index: 100;
+  }
+
+  .nav.openNav .nav-links {
+    left: 0;
+  }
+
+  .nav .navOpenBtn {
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .nav .navCloseBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .nav .search-box {
+    top: calc(100% + 10px);
+    max-width: calc(100% - 20px);
+    right: 50%;
+    transform: translateX(50%);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 20px;
+}
+
+.card-list .card-item {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.04);
+  list-style: none;
+  cursor: pointer;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: border 0.5s ease;
+}
+
+.card-list .card-item:hover {
+  border: 2px solid #000;
+  background: #85d0f0c3;
+}
+
+.card-list .card-item img {
+  width: 300px;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.card-list span {
+  display: inline-block;
+  background: #F7DFF5;
+  margin-top: 20px;
+  padding: 8px 10px;
+  font-size: 0.75rem;
+  border-radius: 30px;
+  font-weight: 600;
+  border: 1px solid #6088f5;
+
+}
+
+.card-list .developer {
+  background-color: #F7DFF5;
+  color: #B22485;
+  text-decoration-line: line-through;
+  font-size: 13px;
+}
+
+.card-list .designer {
+  background-color: #d1e8ff;
+  color: #2968a8;
+  font-size: 13px;
+  text-decoration: line-through
+}
+
+.card-list .editor {
+  background-color: #d6f8d6;
+  color: #205c20;
+  font-size: 13px;
+  text-decoration: line-through
+}
+
+.card-item h3 {
+  color: #000;
+  font-size: 18px;
+  margin-top: 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.reviews {
+  font-size: 14px;
+  color: #888;
+  margin-top: 10px;
+}
+
+.star-rating {
+  color: #ff9800;
+  /* You can use a different color for stars */
+}
+
+.review-count {
+  margin-left: 5px;
+}
+
+.card-list .card-item:hover .arrow {
+  background: #000;
+  color: #fff;
+}
+
+
+
+div.timer-bg {
+  margin-top: 80px;
+  padding: 5px;
+}
+
+#timer {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: red;
+
+
+}
+
+#timer-container {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+
+}
+
+
+@media screen and (max-width: 1200px) {
+  .card-list {
+    margin: 0 auto;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card-list {
+    margin: 0 auto;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .card-list {
+    margin: 0 auto;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card-item {
+    margin: 0 auto;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .card-item {
+    margin: 0 auto;
+    padding: 10px;
+  }
+}
+
+.card-item {
+  max-width: auto;
+  padding: 10px;
+}
+
+.img {
+  max-width: auto;
+}
+
+
+
+/* CSS for the footer */
+
+footer {
+  background-color: #4a98f7;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
+
+
+
+section {
+  margin-top: 80px;
+  padding: 20px;
+
+}
+
+section a {
+  color: #0b64ff;
+  text-decoration: none;
+}
+
+section h1 {
+  text-align: center;
+  font-size: 24px;
+  color: #2968a8;
+  text-decoration: underline;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+section h2 {
+  text-align: left;
+  font-size: 24px;
+  color: #0f3f11;
+  text-transform: capitalize;
+  margin-top: 20px;
+}
+
+
+
+/* Style for the partner item container */
+.partner-item {
+  display: inline-block;
+  width: 250px;
+  /* Adjust the width as needed for four items in a row */
+  margin: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for partner item images */
+.partner-item img {
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 30%;
+}
+
+/* Style for partner item descriptions */
+.partner-item p {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* Media query for mobile screens */
+@media (max-width: 767px) {
+  .partner-item {
+    width: 100%;
+
+  }
+}
+
+section.gift-card-details {
+  
+  max-width: 800px;
+  margin: 0 auto;
+
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  border-radius: 5px;
+}
+
+.gift-card-details h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+
+
+
+.gift-card-details img {
+  max-width: 400px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 20px;
+  border-radius: 20px;
+
+}
+
+.gift-card-details p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.gift-card-details h2 {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.gift-card-details ul,
+.gift-card-details ol {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.gift-card-details strong {
+  font-weight: bold;
+}
+
+/* CSS for centering the "Claim Now" button */
+.claim-button-container {
+  text-align: center;
+}
+
+.claim-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #249aee;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.claim-button:hover {
+  background-color: #0084ff;
+  transform: scale(1.05);
+}
+
+meta[property="og:image"] {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+  /* Add a transition for smooth animation */
+}
+
+/* Define the hover animation */
+meta[property="og:image"]:hover {
+  transform: scale(1.1);
+  /* Increase the scale for a zoom effect on hover */
+}
+
+
+.wrapper {
+  max-width: 1100px;
+  width: 100%;
+  padding: 20px;
+  position: relative;
+
+}
+
+.wrapper i {
+  top: 50%;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  position: absolute;
+  text-align: center;
+  line-height: 50px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.23);
+  transform: translateY(-50%);
+  transition: transform 0.1s linear;
+
+}
+
+.wrapper i:active {
+  transform: translateY(-50%) scale(0.85);
+}
+
+.wrapper i:first-child {
+  left: -22px;
+}
+
+.wrapper i:last-child {
+  right: -22px;
+}
+
+.wrapper .carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 3) - 12px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 16px;
+  border-radius: 8px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel.no-transition {
+  scroll-behavior: auto;
+}
+
+.carousel.dragging {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+
+.carousel.dragging .card {
+  cursor: grab;
+  user-select: none;
+}
+
+.carousel :where(.card, .img) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel .card {
+  scroll-snap-align: start;
+  height: 342px;
+  list-style: none;
+  background: #fff;
+  cursor: pointer;
+  padding-bottom: 15px;
+  flex-direction: column;
+  border-radius: 8px;
+}
+
+.carousel .card .img {
+  background: #8B53FF;
+  height: 148px;
+  width: 148px;
+  border-radius: 50%;
+}
+
+.card .img img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+}
+
+.carousel .card h2 {
+  font-weight: 500;
+  font-size: 1.56rem;
+  margin: 30px 0 5px;
+}
+
+.carousel .card span {
+  color: #6A6D78;
+  font-size: 1.31rem;
+}
+
+@media screen and (max-width: 900px) {
+  .wrapper .carousel {
+    grid-auto-columns: calc((100% / 2) - 9px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper .carousel {
+    grid-auto-columns: 100%;
+  }
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style job listings */
+.job-listing {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  background-color: #f9f9f9;
+}
+
+.job-listing img {
+  max-width: 500px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 20px;
+  border-radius: 20px;
+}
+
+.job-listing h2 {
+  color: #052af9;
+  text-align: center;
+}
+
+.job-listing h3 {
+  color: #333333;
+  margin-top: 10px;
+}
+
+
+
+/* Style the footer */
+footer {
+  background-color: #232f3e;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Media query for responsive design */
+@media (max-width: 600px) {
+  main {
+    padding: 10px;
+  }
+}
+
+/* Style the "Apply Now" button */
+.apply-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #0073e6;
+  /* Button background color */
+  color: #ffffff;
+  /* Button text color */
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Hover effect for the button */
+.apply-button:hover {
+  background-color: #005bbf;
+  /* Change the background color on hover */
+}

@@ -1,0 +1,191 @@
+const nav = document.querySelector(".nav"),
+  searchIcon = document.querySelector("#searchIcon"),
+  navOpenBtn = document.querySelector(".navOpenBtn"),
+  navCloseBtn = document.querySelector(".navCloseBtn");
+
+searchIcon.addEventListener("click", () => {
+  nav.classList.toggle("openSearch");
+  nav.classList.remove("openNav");
+  if (nav.classList.contains("openSearch")) {
+    return searchIcon.classList.replace("uil-search", "uil-times");
+  }
+  searchIcon.classList.replace("uil-times", "uil-search");
+});
+
+navOpenBtn.addEventListener("click", () => {
+  nav.classList.add("openNav");
+  nav.classList.remove("openSearch");
+  searchIcon.classList.replace("uil-times", "uil-search");
+});
+navCloseBtn.addEventListener("click", () => {
+  nav.classList.remove("openNav");
+});
+
+
+
+
+let targetDate = localStorage.getItem("targetDate");
+let daysToAdd = 5;
+
+// Initialize targetDate if it's not in local storage
+if (!targetDate) {
+  targetDate = new Date();
+  localStorage.setItem("targetDate", targetDate.toISOString()); // Store as ISO string
+} else {
+  targetDate = new Date(targetDate); // Parse the stored date from local storage
+}
+
+function updateTimer() {
+  const currentDate = new Date();
+  let timeRemaining = targetDate - currentDate;
+
+  if (timeRemaining <= 0) {
+    targetDate = new Date(currentDate.getTime() + (daysToAdd * 24 * 60 * 60 * 1000));
+    localStorage.setItem("targetDate", targetDate.toISOString()); // Update and store as ISO string
+    timeRemaining = targetDate - currentDate;
+  }
+
+  const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+  document.getElementById("timer").textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+// Start the timer when the page loads
+window.onload = function () {
+  updateTimer();
+  setInterval(updateTimer, 1000);
+};
+
+
+// Disable right-click on the entire page
+window.addEventListener('contextmenu', function (e) {
+  e.preventDefault(); // Prevent the default context menu
+});
+
+
+
+
+
+// Google Tag Manager code
+(function() {
+  var script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-KBK439VNZ8';
+  document.head.appendChild(script);
+
+  script.onload = function() {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-KBK439VNZ8');
+  };
+})();
+
+
+
+const wrapper = document.querySelector(".wrapper");
+const carousel = document.querySelector(".carousel");
+const firstCardWidth = carousel.querySelector(".card").offsetWidth;
+const arrowBtns = document.querySelectorAll(".wrapper i");
+const carouselChildrens = [...carousel.children];
+
+let isDragging = false, isAutoPlay = true, startX, startScrollLeft, timeoutId;
+
+// Get the number of cards that can fit in the carousel at once
+let cardPerView = Math.round(carousel.offsetWidth / firstCardWidth);
+
+// Insert copies of the last few cards to beginning of carousel for infinite scrolling
+carouselChildrens.slice(-cardPerView).reverse().forEach(card => {
+    carousel.insertAdjacentHTML("afterbegin", card.outerHTML);
+});
+
+// Insert copies of the first few cards to end of carousel for infinite scrolling
+carouselChildrens.slice(0, cardPerView).forEach(card => {
+    carousel.insertAdjacentHTML("beforeend", card.outerHTML);
+});
+
+// Scroll the carousel at appropriate postition to hide first few duplicate cards on Firefox
+carousel.classList.add("no-transition");
+carousel.scrollLeft = carousel.offsetWidth;
+carousel.classList.remove("no-transition");
+
+// Add event listeners for the arrow buttons to scroll the carousel left and right
+arrowBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+        carousel.scrollLeft += btn.id == "left" ? -firstCardWidth : firstCardWidth;
+    });
+});
+
+const dragStart = (e) => {
+    isDragging = true;
+    carousel.classList.add("dragging");
+    // Records the initial cursor and scroll position of the carousel
+    startX = e.pageX;
+    startScrollLeft = carousel.scrollLeft;
+}
+
+const dragging = (e) => {
+    if(!isDragging) return; // if isDragging is false return from here
+    // Updates the scroll position of the carousel based on the cursor movement
+    carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
+}
+
+const dragStop = () => {
+    isDragging = false;
+    carousel.classList.remove("dragging");
+}
+
+const infiniteScroll = () => {
+    // If the carousel is at the beginning, scroll to the end
+    if(carousel.scrollLeft === 0) {
+        carousel.classList.add("no-transition");
+        carousel.scrollLeft = carousel.scrollWidth - (2 * carousel.offsetWidth);
+        carousel.classList.remove("no-transition");
+    }
+    // If the carousel is at the end, scroll to the beginning
+    else if(Math.ceil(carousel.scrollLeft) === carousel.scrollWidth - carousel.offsetWidth) {
+        carousel.classList.add("no-transition");
+        carousel.scrollLeft = carousel.offsetWidth;
+        carousel.classList.remove("no-transition");
+    }
+
+    // Clear existing timeout & start autoplay if mouse is not hovering over carousel
+    clearTimeout(timeoutId);
+    if(!wrapper.matches(":hover")) autoPlay();
+}
+
+const autoPlay = () => {
+    if(window.innerWidth < 800 || !isAutoPlay) return; // Return if window is smaller than 800 or isAutoPlay is false
+    // Autoplay the carousel after every 2500 ms
+    timeoutId = setTimeout(() => carousel.scrollLeft += firstCardWidth, 2500);
+}
+autoPlay();
+
+carousel.addEventListener("mousedown", dragStart);
+carousel.addEventListener("mousemove", dragging);
+document.addEventListener("mouseup", dragStop);
+carousel.addEventListener("scroll", infiniteScroll);
+wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
+wrapper.addEventListener("mouseleave", autoPlay);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

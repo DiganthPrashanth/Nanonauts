@@ -1,0 +1,21 @@
+document.addEventListener('DOMContentLoaded', function () {
+  const cardItems = document.querySelectorAll('.card-item');
+  const searchInput = document.querySelector('input[type="text"]');
+
+  searchInput.addEventListener('input', function () {
+    const searchText = this.value.toLowerCase();
+
+    cardItems.forEach((cardItem) => {
+      const cardTitle = cardItem.querySelector('h3').textContent.toLowerCase();
+      const words = cardTitle.split(' ');
+      const hasMatch = words.some((word) => word.includes(searchText));
+
+      if (hasMatch) {
+        cardItem.style.display = 'block'; // Show the card item
+      } else {
+        cardItem.style.display = 'none'; // Hide the card item
+      }
+    });
+  });
+});
+
