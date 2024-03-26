@@ -1,78 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap"
-      rel="stylesheet"
-    />
-
-    <title>Home</title>
-    <link type="text/css" rel="stylesheet" href="./css/nanonauts.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, inital-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="topnav">
-      <a class="active" href="./index.html">Home</a>
-      <a href="#songs">Our Songs</a>
-      <a href="./ai.html">our latest ai</a>
-      <a href="./nanonauts.html">About us</a>
-      <a href="./beyblade.html">#1 Beyblade videos+newest Beyblade videos</a>
-      <p>copyright c2024 Duggusoft</p>
+    <div id="calculator">
+      <input id="display" readonly />
+      <div id="keys">
+        <button onclick="appendToDisplay('+')" class="operator-btn">+</button>
+        <button onclick="appendToDisplay('7')">7</button>
+        <button onclick="appendToDisplay('8')">8</button>
+        <button onclick="appendToDisplay('9')">9</button>
+        <button onclick="appendToDisplay('-')" class="operator-btn">-</button>
+        <button onclick="appendToDisplay('4')">4</button>
+        <button onclick="appendToDisplay('5')">5</button>
+        <button onclick="appendToDisplay('6')">6</button>
+        <button onclick="appendToDisplay('*')" class="operator-btn">*</button>
+        <button onclick="appendToDisplay('1')">1</button>
+        <button onclick="appendToDisplay('2')">2</button>
+        <button onclick="appendToDisplay('3')">3</button>
+        <button onclick="appendToDisplay('/')" class="operator-btn">/</button>
+        <button onclick="appendToDisplay('0')">0</button>
+        <button onclick="appendToDisplay('.')">.</button>
+        <button onclick="calculate()">=</button>
+        <button onclick="clearDisplay()" class="operator-btn">C</button>  
+      </div>
     </div>
-    <div class="container">
-      <slot></slot>
-    </div>
-    <cib-suggestion-bar
-      mode="off-stage"
-      serp-slot="right-rail"
-      product="bing"
-      suggestion-bar-visible=""
-      goldilocks-rai=""
-      divider=""
-      visible=""
-      see-more-expanded=""
-    ></cib-suggestion-bar>
-
-    <h1 id="welcome">Home</h1>
-    <p>
-      <img src="./images/nanonauts.png" alt="Picture of the Nanonauts" />
-    </p>
-
-    <p>we are the nanonauts our names are diganth and prashanth</p>
-
-    <h1 id="#songs">OUR SONGS</h1>
-    <p>This is a list of the songs we/or/I can play</p>
-    <p></p>
-    <ul>
-      <li>boot (beep boop edition)</li>
-      <ul>
-        <li>Beep Boop (The exzat thing as boot)</li>
-        <li><a href="./songs/vancouvervelocity.mp3">Vancouver Velocity</a></li>
-      </ul>
-      <p>here's Beep Boop ! Maybe just Maybe you can edit it!</p>
-      <iframe
-        width="700"
-        height="500"
-        src="https://musiclab.chromeexperiments.com/Song-Maker/embed/5996237013778432"
-        frameborder="0"
-        allowfullscreen
-      ></iframe>
-      <p>you could make your own version of beep boop with spturm!</p>
-      <iframe
-        width="700"
-        height="500"
-        src="https://musiclab.chromeexperiments.com/Spectrogram/"
-        frameborder="0"
-        allowfullscreen
-      ></iframe>
-      <p>or Song-Maker!</p>
-    <iframe
-    width="700"
-    height="500"
-    src="https://musiclab.chromeexperiments.com/Song-Maker/"
-    frameborder="0"
-    allowfullscreen
-  ></iframe>
-    </body>
-    </ul>
+    <script src="./index.js"></script>
   </body>
 </html>
